@@ -9,30 +9,89 @@ public class Driver {
 		int opcion1 = 0;
 		int opcion2 = 0;
 		String nombre = "";
+		String ingreso = "";
 		String[] arreglo = new String[0];
 
 		System.out.println("Bienvenido al sistema de registro de desarroladores");
-		System.out.println("Seleccione la implementación a utilizar\n	1. HashSet\n	2. TreeSet\n	3. LinkedHashSet\nOpción:");
-		opcion1 = teclado.nextInt();
+		while(true){
+			try{
+				System.out.println("Seleccione la implementación a utilizar\n	1. HashSet\n	2. TreeSet\n	3. LinkedHashSet\nOpción:");
+				ingreso = teclado.next();
+				opcion1 = Integer.parseInt(ingreso);
+				break;
+			}
+			catch(Exception e){}
+		}
+		
 		Conjuntos conjunto = new Conjuntos(opcion1);
-		System.out.println("¿Cuántos desarrolladores desea ingresar)\nNúmero:");
-		opcion1 = teclado.nextInt();
+		while(true){
+			try{
+				System.out.println("¿Cuántos desarrolladores desea ingresar?\nNúmero:");				 
+				ingreso = teclado.next();
+				opcion1 = Integer.parseInt(ingreso);
+				break;
+			}
+			catch(Exception e){}
+		}
 		System.out.println("----------------------------------------------------------");
 		for (int i = 0; i < opcion1; i++){
-			System.out.print("Ingrese el nombre: ");
-			nombre = teclado.next();
-			System.out.print("¿Es desarrollador Java? 1. Sí 2. No\nOpción: ");
-			opcion2 = teclado.nextInt();
+			while(true){
+				System.out.print("Ingrese el nombre: ");
+				nombre = teclado.next();
+				if(nombre.length() >= 3){
+					break;
+				}
+				else{
+					System.out.println("Por favor, ingrese un nombre con mínimo tres caracteres");
+				}
+			}
+			
+			
+			
+			while(true){
+				try{
+					System.out.print("¿Es desarrollador JAVA? 1. Sí 2. No\nOpción: ");
+					ingreso = teclado.next();
+					opcion2 = Integer.parseInt(ingreso);
+					if(opcion2==1||opcion2==2)
+						break;
+					else
+						System.out.print("¡Debe ingresar 1 o 2!\n");
+				}
+				catch(Exception e){System.out.print("¡Debe ingresar un NUMERO entre 1 y 2!\n");}
+			}
 			if(opcion2 == 1){
 				conjunto.agregar(nombre, 1);
 			}
-			System.out.print("¿Es desarrollador Web? 1. Sí 2. No\nOpción: ");
-			opcion2 = teclado.nextInt();
+			
+			
+			while(true){
+				try{
+					System.out.print("¿Es desarrollador WEB? 1. Sí 2. No\nOpción: ");
+					ingreso = teclado.next();
+					opcion2 = Integer.parseInt(ingreso);
+					if(opcion2==1||opcion2==2)
+						break;
+					else
+						System.out.print("¡Debe ingresar 1 o 2!\n");
+				}
+				catch(Exception e){System.out.print("¡Debe ingresar un NUMERO entre 1 y 2!\n");}
+			}
 			if(opcion2 == 1){
 				conjunto.agregar(nombre, 2);
 			}
-			System.out.print("¿Es desarrollador de celulares? 1. Sí 2. No\nOpción: ");
-			opcion2 = teclado.nextInt();
+			while(true){
+				try{
+					System.out.print("¿Es desarrollador de CELULARES? 1. Sí 2. No\nOpción: ");
+					ingreso = teclado.next();
+					opcion2 = Integer.parseInt(ingreso);
+					if(opcion2==1||opcion2==2)
+						break;
+					else
+						System.out.print("¡Debe ingresar 1 o 2!\n");
+				}
+				catch(Exception e){System.out.print("¡Debe ingresar un NUMERO entre 1 y 2!\n");}
+			}
 			if(opcion2 == 1){
 				conjunto.agregar(nombre, 3);
 			}
@@ -213,9 +272,8 @@ public class Driver {
 				}
 			}
 		}
-		
-		
-		
-		
+		else{
+			System.out.println("No hay un solo conjunto con más miembros que los otros");
+		}
 	}
 }

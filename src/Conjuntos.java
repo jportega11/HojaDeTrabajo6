@@ -59,17 +59,23 @@ public class Conjuntos {
 		String[] arreglo3 = new String[desJava.size()];
 		int contador = 0;
 		for(int i = 0; i < arreglo1.length; i++){//revisa los nombres que se repiten en Java y Web
-			if(desWeb.contains(arreglo1[i])){
-				arreglo2[contador] = arreglo1[i];
-				contador++;
+			try{
+				if(desWeb.contains(arreglo1[i])){
+					arreglo2[contador] = arreglo1[i];
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}
 		}
 		contador = 0;
 		for(int i = 0; i < arreglo2.length; i++){//revisa los nombres que se repiten en el conjunto generado anteriormente y Cel
-			if(desCel.contains(arreglo2[i])){
-				arreglo3[contador] = arreglo2[i];
-				contador++;
+			try{
+				if(desCel.contains(arreglo2[i])){
+					arreglo3[contador] = arreglo2[i];
+					contador++;
+				}
 			}
+		catch(NullPointerException e){}
 		}
 		return arreglo3;//regrese el conjunto generado
 	}
@@ -78,10 +84,13 @@ public class Conjuntos {
 		String[] arreglo2 = new String[desJava.size()];
 		int contador = 0;
 		for(int i = 0; i < arreglo1.length; i++){//revisa los nombres de Java que no están en Web
-			if(!desWeb.contains(arreglo1[i])){
-				arreglo2[contador] = arreglo1[i];
-				contador++;
+			try{
+				if(!desWeb.contains(arreglo1[i])){
+					arreglo2[contador] = arreglo1[i];
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}
 		}
 		return arreglo2;
 	}
@@ -91,17 +100,23 @@ public class Conjuntos {
 		String[] arreglo3 = new String[desWeb.size()];
 		int contador = 0;
 		for(int i = 0; i < arreglo1.length; i++){//revisa los nombres que se repiten en Web y Cel
-			if(desCel.contains(arreglo1[i])){
-				arreglo2[contador] = arreglo1[i];
-				contador++;
+			try{
+				if(desCel.contains(arreglo1[i])){
+					arreglo2[contador] = arreglo1[i];
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}
 		}
 		contador = 0;
 		for(int i = 0; i < arreglo2.length; i++){//del conjunto anterior, revisa los que no están en Java
-			if(!desJava.contains(arreglo2[i])){
-				arreglo3[contador] = arreglo2[i];
-				contador++;
+			try{
+				if(!desJava.contains(arreglo2[i])){
+					arreglo3[contador] = arreglo2[i];
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}	
 		}
 		return arreglo3;
 	}
@@ -111,17 +126,24 @@ public class Conjuntos {
 		String[] arreglo3 = new String[desWeb.size() + desCel.size()];
 		int contador = 0;
 		for(int i = 0; i < arreglo1.length; i++){//revisa los nombres que le hacen falta a Cel de Web
-			if(!desCel.contains(arreglo1[i])){
-				arreglo2[desCel.size() + contador] = arreglo1[i];
-				contador++;
+			try{
+				if(!desCel.contains(arreglo1[i])){
+					arreglo2[desCel.size() + contador] = arreglo1[i];
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}
+			
 		}
 		contador = 0;
 		for(int i = 0; i < arreglo2.length; i++){//del conjunto anterior, revisa los que no están en Java
-			if(!desJava.contains(arreglo2[i])){
-				arreglo3[contador] = arreglo2[i];
-				contador++;
+			try{
+				if(!desJava.contains(arreglo2[i])){
+					arreglo3[contador] = arreglo2[i];
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}
 		}
 		return arreglo3;
 	}
@@ -129,26 +151,18 @@ public class Conjuntos {
 		String[] arreglo1 = desJava.toArray(new String[0]);
 		int contador = 0;
 		for(int i = 0; i < arreglo1.length; i++){//revisa cuántos nombres de Java están en Web
-			if(desWeb.contains(arreglo1[i])){
-				contador++;
+			try{
+				if(desWeb.contains(arreglo1[i])){
+					contador++;
+				}
 			}
+			catch(NullPointerException e){}
 		}
 		if(contador == desJava.size()){//si todos los nombres de Java están en Web, retorna true
 			return true;
 		}
 		else{
 			return false;//si no, false
-		}
-	}
-	public int mayor(){
-		if(desJava.size() >= desWeb.size() && desJava.size() >= desCel.size()){
-			return 1;
-		}
-		if(desWeb.size() >= desJava.size() && desWeb.size() >= desCel.size()){
-			return 2;
-		}
-		else{
-			return 3;
 		}
 	}
 }
